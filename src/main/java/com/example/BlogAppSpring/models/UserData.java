@@ -1,4 +1,4 @@
-/*
+
 package com.example.BlogAppSpring.models;
 
 import lombok.Getter;
@@ -17,7 +17,7 @@ public class UserData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(length = 50,unique = true)
+    @Column(length = 50,unique = true) // nullable - not null - default true
     private String userName;
 
     @Column(length = 50,unique = true)
@@ -31,13 +31,13 @@ public class UserData {
     private LocalDateTime regTime;
 
     @Enumerated
-    private State state;
+    private UserState state;
 
     public UserData() {
     }
 
     public UserData(long id, String userName,
-                    String password, String email, byte[] profilePicture, State state) {
+                    String password, String email, byte[] profilePicture, UserState state) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -58,4 +58,4 @@ public class UserData {
                 '}';
     }
 }
-*/
+

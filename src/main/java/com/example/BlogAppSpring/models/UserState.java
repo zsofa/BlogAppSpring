@@ -1,6 +1,6 @@
 package com.example.BlogAppSpring.models;
 
-public enum State {
+public enum UserState {
     USER,
     ADMIN,
     MODERATOR
