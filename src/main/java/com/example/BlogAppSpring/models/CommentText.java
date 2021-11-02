@@ -16,6 +16,12 @@ public class CommentText {
     @Column(length = 300)
     private String commentText;
 
+    @ManyToOne
+    private BlogText blog_text;
+
+    @ManyToOne
+    private UserData userData;
+
     public CommentText() {
     }
 

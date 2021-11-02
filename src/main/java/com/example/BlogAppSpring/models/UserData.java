@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.List;
 
 @Getter @Setter
 @Entity
@@ -32,6 +33,12 @@ public class UserData {
 
     @Enumerated
     private UserState state;
+
+    @OneToMany(mappedBy = "user")
+    private List<BlogText> blogTextList;
+
+    @OneToMany(mappedBy = "userData")
+    private List<CommentText> commentTextList;
 
     public UserData() {
     }

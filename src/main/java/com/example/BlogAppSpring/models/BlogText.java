@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter @Setter
 @Entity
@@ -14,6 +15,15 @@ public class BlogText {
     private long id;
     @Column(length = 1000)
     private String textContent;
+
+    @ManyToOne
+    private UserData user;
+
+    @ManyToOne
+    private Template template;
+
+    @OneToMany(mappedBy = "blog_text")
+    private List<CommentText> commentTextList;
 
     public BlogText() {
     }
