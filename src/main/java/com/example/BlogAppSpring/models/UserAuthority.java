@@ -1,0 +1,15 @@
+package com.example.BlogAppSpring.models;
+
+public enum UserAuthority {
+    BLOGPOST_READ,
+    ALL_USER_DATA_READ,
+    OWN_USER_DATA_READ,
+    ALL_USER_DATA_EDIT,
+    OWN_USER_DATA_EDIT,
+    ALL_BLOGPOST_EDIT,
+    OWN_BLOGPOST_EDIT,
+    BLOGPOST_WRITE,
+    ALL_BLOGPOST_DELETE,
+    OWN_BLOGPOST_DELETE,
+    COMMENT_WRITE
+}

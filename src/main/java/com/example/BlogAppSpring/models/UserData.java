@@ -4,15 +4,19 @@ package com.example.BlogAppSpring.models;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Getter @Setter
 @Entity
-public class UserData {
+@Table
+public class UserData implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +28,7 @@ public class UserData {
     @Column(length = 50,unique = true)
     private String password;
 
-    @Column(length = 200 ,unique = true)
+
     private String email;
     private byte[] profilePicture;
 
@@ -39,6 +43,8 @@ public class UserData {
 
     @OneToMany(mappedBy = "userData")
     private List<CommentText> commentTextList;
+
+
 
     public UserData() {
     }
@@ -63,6 +69,42 @@ public class UserData {
                 ", profilePicture=" + Arrays.toString(profilePicture) +
                 ", state=" + state +
                 '}';
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
     }
 }
 
