@@ -1,6 +1,8 @@
 
-package com.example.BlogAppSpring.models;
+package com.example.BlogAppSpring.userModels;
 
+import com.example.BlogAppSpring.otherModels.BlogText;
+import com.example.BlogAppSpring.otherModels.CommentText;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -36,7 +38,7 @@ public class UserData implements UserDetails {
     private LocalDateTime regTime;
 
     @Enumerated
-    private UserState state;
+    private UserRole userRole;
 
     @OneToMany(mappedBy = "user")
     private List<BlogText> blogTextList;
@@ -50,13 +52,13 @@ public class UserData implements UserDetails {
     }
 
     public UserData(long id, String userName,
-                    String password, String email, byte[] profilePicture, UserState state) {
+                    String password, String email, byte[] profilePicture, UserRole userRole) {
         this.id = id;
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.profilePicture = profilePicture;
-        this.state = state;
+        this.userRole = userRole;
     }
 
     @Override
@@ -67,7 +69,7 @@ public class UserData implements UserDetails {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", profilePicture=" + Arrays.toString(profilePicture) +
-                ", state=" + state +
+                ", state=" + userRole +
                 '}';
     }
 

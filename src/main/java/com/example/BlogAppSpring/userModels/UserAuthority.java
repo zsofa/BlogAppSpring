@@ -1,4 +1,4 @@
-package com.example.BlogAppSpring.models;
+package com.example.BlogAppSpring.userModels;
 
 public enum UserAuthority {
     BLOGPOST_READ,

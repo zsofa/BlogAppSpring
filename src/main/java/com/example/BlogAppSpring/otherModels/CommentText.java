@@ -1,5 +1,6 @@
-package com.example.BlogAppSpring.models;
+package com.example.BlogAppSpring.otherModels;
 
+import com.example.BlogAppSpring.userModels.UserData;
 import lombok.Getter;
 import lombok.Setter;
 

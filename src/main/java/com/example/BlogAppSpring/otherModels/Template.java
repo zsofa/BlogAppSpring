@@ -1,9 +1,8 @@
-package com.example.BlogAppSpring.models;
+package com.example.BlogAppSpring.otherModels;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
