@@ -52,9 +52,11 @@ public class UserService {
     }
 
     @Transactional
-    public void registerNewUser(UserData user) {
+    public UserData registerNewUser(UserData user) {
         entityManager.persist(user);
+        return user;
     }
+
 
 
 }

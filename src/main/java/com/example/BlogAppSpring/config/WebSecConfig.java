@@ -22,5 +22,15 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // TODO authorize
 
+        http.
+                csrf().disable()
+                .formLogin()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/users").hasAnyAuthority("ADMIN")
+                .antMatchers("/register").permitAll()
+                .antMatchers("/blogs").authenticated()
+                .antMatchers("/blog-wire").hasAnyAuthority("USER", "ADMIN","MODERATOR");
+
     }
 }
