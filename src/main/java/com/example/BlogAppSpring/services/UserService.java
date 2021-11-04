@@ -1,6 +1,8 @@
 package com.example.BlogAppSpring.services;
 
 import com.example.BlogAppSpring.userModels.UserData;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -57,6 +59,17 @@ public class UserService {
         return user;
     }
 
+    public UserData getLoggedInUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth != null) {
+            Object user = auth.getPrincipal();
+            if (user instanceof UserData) {
+                return (UserData) user;
+            }
+        }
+        return null;
+    }
 
 
 }

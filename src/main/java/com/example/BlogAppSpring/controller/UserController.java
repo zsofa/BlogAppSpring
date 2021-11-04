@@ -4,14 +4,9 @@ import com.example.BlogAppSpring.returnModel.ReturnModel;
 import com.example.BlogAppSpring.services.UserService;
 import com.example.BlogAppSpring.userModels.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 public class UserController {
@@ -40,11 +35,14 @@ public class UserController {
         return returnModel;
     }
 
-    /*@GetMapping("/user")
-    public ReturnModel<Authentication> getLoggedInUSer() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    @GetMapping("/user")
+    public ReturnModel<UserData> getLoggedInUSer() {
 
-    }*/
+        ReturnModel<UserData> returnModel =
+                new ReturnModel<>(true, HttpStatus.OK,userService.getLoggedInUser());
+
+        return returnModel;
+    }
 
    @PostMapping("/register")
     public ReturnModel<UserData> registerUser(@RequestBody UserData userData) {

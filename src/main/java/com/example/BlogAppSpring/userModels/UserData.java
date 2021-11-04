@@ -7,10 +7,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -76,7 +78,12 @@ public class UserData implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> list =new ArrayList<>();
+        for (UserAuthority userAuthority : userRole.AUTHORITIES) {
+        SimpleGrantedAuthority sGa = new SimpleGrantedAuthority(userAuthority.toString());
+        list.add(sGa);
+        }
+        return list;
     }
 
     @Override
