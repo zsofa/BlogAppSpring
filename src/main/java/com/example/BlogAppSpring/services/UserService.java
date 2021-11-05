@@ -59,6 +59,7 @@ public class UserService {
         return user;
     }
 
+
     public UserData getLoggedInUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 

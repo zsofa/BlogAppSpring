@@ -5,7 +5,10 @@ import com.example.BlogAppSpring.services.UserService;
 import com.example.BlogAppSpring.userModels.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -20,33 +23,41 @@ public class UserController {
 
     @GetMapping("/users")
     public ReturnModel<UserData> getAllUsers() {
-        ReturnModel<UserData> returnModel =
-                new ReturnModel<>(true, HttpStatus.OK,userService.listAllUsers());
+        List<UserData> users= userService.listAllUsers();
 
-        return returnModel;
-
+        if (users != null) {
+            return new ReturnModel<>(true, HttpStatus.OK,users);
+        } else {
+            return new ReturnModel<>(false,HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/users/{id}")
     public ReturnModel<UserData> getUserById(@PathVariable Long id) {
-        ReturnModel<UserData> returnModel =
-                new ReturnModel<>(true, HttpStatus.OK,userService.getUserById(id));
+        UserData user = userService.getUserById(id);
 
-        return returnModel;
+        if (user !=  null) {
+            return new ReturnModel<>(true, HttpStatus.OK,user);
+        } else {
+            return new ReturnModel<>(false, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/user")
     public ReturnModel<UserData> getLoggedInUSer() {
 
-        ReturnModel<UserData> returnModel =
-                new ReturnModel<>(true, HttpStatus.OK,userService.getLoggedInUser());
+        UserData user = userService.getLoggedInUser();
 
-        return returnModel;
+        if (user != null) {
+            return new ReturnModel<>(true, HttpStatus.OK,userService.getLoggedInUser());
+        } else {
+            return new ReturnModel<>(false,HttpStatus.NOT_FOUND);
+        }
     }
 
    @PostMapping("/register")
     public ReturnModel<UserData> registerUser(@RequestBody UserData userData) {
-      ;
 
       ReturnModel<UserData> toReturn =
               new ReturnModel<>(true,HttpStatus.OK,userService.registerNewUser(userData));

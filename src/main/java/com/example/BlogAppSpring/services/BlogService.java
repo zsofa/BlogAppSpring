@@ -1,7 +1,6 @@
 package com.example.BlogAppSpring.services;
 
 import com.example.BlogAppSpring.otherModels.BlogText;
-import com.example.BlogAppSpring.userModels.UserData;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;

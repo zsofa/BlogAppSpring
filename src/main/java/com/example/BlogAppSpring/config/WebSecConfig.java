@@ -30,7 +30,7 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users").hasAnyAuthority("ADMIN")
                 .antMatchers("/register").permitAll()
                 .antMatchers("/blogs").authenticated()
-                .antMatchers("/blog-wire").hasAnyAuthority("USER", "ADMIN","MODERATOR");
+                .antMatchers("/blog-write").hasAnyAuthority("USER", "ADMIN","MODERATOR");
 
     }
 }

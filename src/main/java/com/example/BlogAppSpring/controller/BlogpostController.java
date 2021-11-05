@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class BlogpostController {
 
@@ -23,10 +25,15 @@ public class BlogpostController {
 
     @GetMapping("/blogs")
     public ReturnModel<BlogText> getAllBlogs() {
-        ReturnModel<BlogText> blogs =
-                new ReturnModel<>(true, HttpStatus.OK, blogService.lisAllBlogposts());
 
-        return blogs;
+        List<BlogText> blogs = blogService.lisAllBlogposts();
+
+        if (blogs != null) {
+            return  new ReturnModel<>(true, HttpStatus.OK, blogs );
+        } else {
+            return new ReturnModel<>(false, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     
