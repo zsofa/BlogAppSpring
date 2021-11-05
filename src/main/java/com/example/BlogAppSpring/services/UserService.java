@@ -13,22 +13,6 @@ import java.util.List;
 @Service
 public class UserService {
 
-    /**
-     * 1. visszaadja az összes felhasználót az adatbázisból KÉSZ
-     *
-     * 2. visszaadja az adott id-jű felhasználót adatbázisból
-     * megjegyzés: ha nincs szám típusú id-ja a felhasználóidnak,
-     * akkor ebben az endpoint-ban lecserélhető a Long id arra az adattípusra,
-     * amilyen PRIMARY KEY-t használsz DONE
-     *
-     * 3. visszaadja a bejelentkezett felhasználót LATER
-     *
-     * 4.  új felhasználót rögzít az adatbázisba
-     *
-     * 5. + 1 BlogService
-     */
-
-
     @PersistenceContext
     EntityManager entityManager;
 
